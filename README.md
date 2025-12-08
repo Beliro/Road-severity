@@ -1,9 +1,3 @@
-Here is a complete, professional `README.md` file for your project. You can copy this directly into your GitHub repository or project folder.
-
-It covers everything we have done: from the raw data to the final "SafeRoute Pro" web application.
-
------
-
 # 🛡️ SafeRoute Pro: Road Accident Severity Prediction
 
    
