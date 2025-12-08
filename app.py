@@ -10,62 +10,61 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- 2. CUSTOM CSS (The "responsive interface" logic) ---
+# --- 2. CUSTOM CSS ---
 st.markdown("""
 <style>
     /* --- GLOBAL SETTINGS --- */
     .stApp {
-        background-color: #1a1a1d; /* SOLID DARK BODY */
+        background-color: #2e2e2e; /* CHANGED TO DARK GREY */
         color: #ffffff;
         font-family: 'Helvetica Neue', sans-serif;
     }
     
-    /* Remove default padding to allow header/footer to touch edges */
+    /* Remove default padding */
     .block-container {
         padding-top: 6rem;
         padding-bottom: 6rem;
     }
 
-    /* --- PART 1: THE BLURRED HEADER --- */
-    /* We create a fixed container at the top */
+    /* --- GLASS HEADER --- */
     .glass-header {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 5rem;
-        background: rgba(220, 230, 240, 0.15); /* Soft Light Color */
-        backdrop-filter: blur(12px); /* THE BLUR EFFECT */
+        background: rgba(46, 46, 46, 0.7); /* Semi-transparent Dark Grey */
+        backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         z-index: 999;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     }
     .header-text {
         font-size: 24px;
         font-weight: 700;
-        color: #e6e6e6;
+        color: #f0f0f0;
         letter-spacing: 1px;
+        text-transform: uppercase;
     }
 
-    /* --- PART 2: THE RESPONSIVE INPUT BODY --- */
-    /* Styling the container for inputs */
+    /* --- RESPONSIVE INPUT BODY --- */
     .input-section {
-        background-color: #2d2d30; /* Slightly lighter than body */
-        border-radius: 15px;
+        background-color: #383838; /* Slightly lighter grey for cards */
+        border-radius: 12px;
         padding: 25px;
         margin-bottom: 20px;
-        border: 1px solid #3e3e42;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* SMOOTH TRANSITION */
+        border: 1px solid #4d4d4d;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
     }
 
-    /* HOVER EFFECT: Lift and Glow */
     .input-section:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-        border-color: #00d2ff; /* Cyan accent on hover */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        border-color: #00d2ff;
     }
 
     .section-title {
@@ -77,30 +76,30 @@ st.markdown("""
         padding-bottom: 5px;
     }
 
-    /* Style Streamlit Inputs to fit the dark theme */
+    /* Input Text Labels */
     .stSelectbox label, .stNumberInput label, .stSlider label {
-        color: #b0b0b0 !important;
+        color: #cccccc !important;
     }
 
-    /* --- PART 3: THE BLURRED FOOTER --- */
+    /* --- GLASS FOOTER --- */
     .glass-footer {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 4rem;
-        background: rgba(220, 230, 240, 0.15); /* Soft Light Color */
+        height: 3rem;
+        background: rgba(46, 46, 46, 0.7);
         backdrop-filter: blur(12px);
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         z-index: 999;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #cccccc;
-        font-size: 14px;
+        color: #888888;
+        font-size: 12px;
     }
 
-    /* PREDICT BUTTON STYLING */
+    /* --- PREDICT BUTTON --- */
     div.stButton > button {
         background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
         color: white;
@@ -110,34 +109,35 @@ st.markdown("""
         font-weight: bold;
         transition: transform 0.2s;
         width: 100%;
+        text-transform: uppercase;
     }
     div.stButton > button:hover {
         transform: scale(1.03);
         box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
     }
     
-    /* RESULT CARD */
+    /* --- RESULT BOX --- */
     .result-box {
-        background: rgba(0,0,0,0.5);
+        background: rgba(30, 30, 30, 0.8);
         border-left: 5px solid #00d2ff;
         border-radius: 10px;
-        padding: 20px;
+        padding: 25px;
         text-align: center;
         margin-top: 20px;
-        animation: fadeIn 1s;
+        animation: fadeIn 0.8s;
     }
     @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      from {opacity: 0; transform: translateY(10px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
 </style>
 """, unsafe_allow_html=True)
 
-# --- 3. HTML HEADER INJECTION ---
+# --- 3. HEADER INJECTION ---
 st.markdown("""
     <div class="glass-header">
-        <span class="header-text">🚦 Road Safety AI • Predictive Interface</span>
+        <span class="header-text">🚦 Road Safety AI System</span>
     </div>
 """, unsafe_allow_html=True)
 
@@ -157,7 +157,20 @@ except FileNotFoundError:
     st.error("Model files missing.")
     st.stop()
 
-# --- 5. THE BODY (Responsive Inputs) ---
+# --- 5. INTRODUCTORY SECTION (NEW!) ---
+st.title("Accident Severity Risk Assessment")
+st.markdown("""
+<div style="background-color: #383838; padding: 15px; border-radius: 10px; border-left: 5px solid #00d2ff; margin-bottom: 25px;">
+    <p style="font-size: 16px; margin: 0; color: #e0e0e0; line-height: 1.6;">
+        <b>Welcome to the Predictive Analytics Dashboard.</b><br>
+        This tool utilizes advanced machine learning algorithms to analyze environmental conditions, vehicle characteristics, 
+        and driver demographics. By processing these variables, the system predicts the potential severity of a road accident 
+        (Slight, Serious, or Fatal). Adjust the parameters below to simulate different scenarios and assess risk levels.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+# --- 6. MAIN BODY ---
 
 # We use columns to create a grid layout
 c1, c2 = st.columns([1, 1])
@@ -165,12 +178,13 @@ c1, c2 = st.columns([1, 1])
 with c1:
     # --- SECTION A: ENVIRONMENT ---
     st.markdown('<div class="input-section">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">🌍 Environment</div>',
+    st.markdown('<div class="section-title">🌍 Environmental Factors</div>',
                 unsafe_allow_html=True)
 
-    hour = st.slider("Time of Day", 0, 23, 18)
+    hour = st.slider("Time of Day (24hr)", 0, 23, 18)
     day = st.selectbox("Day of Week", unique_values['Day_of_week'])
-    weather = st.selectbox("Weather", unique_values['Weather_conditions'])
+    weather = st.selectbox("Weather Conditions",
+                           unique_values['Weather_conditions'])
     light = st.selectbox("Light Conditions", unique_values['Light_conditions'])
 
     st.markdown('</div>', unsafe_allow_html=True)
@@ -178,33 +192,35 @@ with c1:
 with c2:
     # --- SECTION B: INCIDENT ---
     st.markdown('<div class="input-section">', unsafe_allow_html=True)
-    st.markdown('<div class="section-title">💥 Incident Details</div>',
+    st.markdown('<div class="section-title">💥 Incident Specifics</div>',
                 unsafe_allow_html=True)
 
     vehicles = st.number_input("Vehicles Involved", 1, 10, 2)
-    casualties = st.number_input("Casualties", 1, 10, 1)
+    casualties = st.number_input("Number of Casualties", 1, 10, 1)
     road_surface = st.selectbox(
-        "Road Surface", unique_values['Road_surface_conditions'])
-    cause = st.selectbox("Cause", unique_values['Cause_of_accident'])
+        "Road Surface Condition", unique_values['Road_surface_conditions'])
+    cause = st.selectbox("Primary Cause", unique_values['Cause_of_accident'])
 
     st.markdown('</div>', unsafe_allow_html=True)
 
 # --- SECTION C: DRIVER (Full Width) ---
 st.markdown('<div class="input-section">', unsafe_allow_html=True)
-st.markdown('<div class="section-title">🚙 Driver & Vehicle</div>',
+st.markdown('<div class="section-title">🚙 Driver & Vehicle Profile</div>',
             unsafe_allow_html=True)
 
 dc1, dc2, dc3 = st.columns(3)
 with dc1:
-    age = st.selectbox("Driver Age", unique_values['Age_band_of_driver'])
-    sex = st.selectbox("Driver Sex", unique_values['Sex_of_driver'])
+    age = st.selectbox("Driver Age Band", unique_values['Age_band_of_driver'])
+    sex = st.selectbox("Driver Gender", unique_values['Sex_of_driver'])
 with dc2:
-    exp = st.selectbox("Experience", unique_values['Driving_experience'])
+    exp = st.selectbox("Driving Experience",
+                       unique_values['Driving_experience'])
     v_type = st.selectbox("Vehicle Type", unique_values['Type_of_vehicle'])
 with dc3:
     col_type = st.selectbox(
         "Collision Type", unique_values['Type_of_collision'])
-    junction = st.selectbox("Junction", unique_values['Types_of_Junction'])
+    junction = st.selectbox(
+        "Junction Type", unique_values['Types_of_Junction'])
 
 # Hidden defaults
 defaults = {
@@ -229,8 +245,8 @@ defaults = {
 
 st.markdown('</div>', unsafe_allow_html=True)
 
-# --- 6. ACTION & RESULT ---
-if st.button("RUN ANALYSIS"):
+# --- 7. ACTION & RESULT ---
+if st.button("RUN RISK ANALYSIS"):
 
     # Map Inputs
     input_data = {
@@ -265,7 +281,7 @@ if st.button("RUN ANALYSIS"):
         'Fitness_of_casuality': defaults['Fitness_of_casuality'],
         'Pedestrian_movement': defaults['Pedestrian_movement'],
         'Cause_of_accident': cause,
-        'Hour_of_Day': hour
+        'Hour_of_Day': hour  # Keep as 'Hour' or 'Hour_of_Day' based on what worked!
     }
 
     df_in = pd.DataFrame([input_data])
@@ -277,32 +293,33 @@ if st.button("RUN ANALYSIS"):
         p_fatal, p_serious, p_slight = probs[0], probs[1], probs[2]
 
         if p_fatal > 0.10:
-            status = "HIGH RISK: FATAL"
+            status = "CRITICAL RISK: FATAL"
             color = "#ff4b4b"
-            msg = "Conditions suggest high likelihood of fatal injuries."
+            msg = "Warning: The selected conditions indicate a high probability of fatal outcomes. Immediate safety intervention recommended."
         elif p_serious > 0.20:
-            status = "MODERATE RISK: SERIOUS"
+            status = "HIGH RISK: SERIOUS INJURY"
             color = "#ffa500"
-            msg = "Serious injuries are probable."
+            msg = "Caution: Conditions are favorable for serious injuries. Drive with extreme care."
         else:
-            status = "LOW RISK: SLIGHT"
+            status = "LOW RISK: SLIGHT INJURY"
             color = "#00d2ff"
-            msg = "Likely minor injuries only."
+            msg = "Risk Assessment: Accidents under these conditions are likely to be minor, but safety protocols should still be followed."
 
         st.markdown(f"""
         <div class="result-box" style="border-left-color: {color};">
             <h2 style="color: {color}; margin:0;">{status}</h2>
-            <p style="color: #ccc; margin-top: 10px;">{msg}</p>
-            <p style="font-size: 14px; margin-top: 5px;">Confidence: {max(probs)*100:.1f}%</p>
+            <p style="color: #e0e0e0; margin-top: 10px; font-size: 16px;">{msg}</p>
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 15px 0;">
+            <p style="font-size: 14px; margin-top: 5px; color: #aaa;">AI Confidence Score: <b>{max(probs)*100:.1f}%</b></p>
         </div>
         """, unsafe_allow_html=True)
 
     except Exception as e:
         st.error(f"Error: {e}")
 
-# --- 7. HTML FOOTER INJECTION ---
+# --- 8. FOOTER INJECTION ---
 st.markdown("""
     <div class="glass-footer">
-        <span>Group 6 Capstone • AI for Road Safety</span>
+        <span>Group 6 Capstone Project • Developed for Road Safety Analysis</span>
     </div>
 """, unsafe_allow_html=True)
