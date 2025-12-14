@@ -8,15 +8,15 @@
 
 ## 📖 Table of Contents
 
-1.  [Project Overview](https://www.google.com/search?q=%23-project-overview)
-2.  [Key Features](https://www.google.com/search?q=%23-key-features)
-3.  [Tech Stack](https://www.google.com/search?q=%23-tech-stack)
-4.  [Dataset & Preprocessing](https://www.google.com/search?q=%23-dataset--preprocessing)
-5.  [Model Architecture](https://www.google.com/search?q=%23-model-architecture)
-6.  [Installation & Usage](https://www.google.com/search?q=%23-installation--usage)
-7.  [Project Structure](https://www.google.com/search?q=%23-project-structure)
-8.  [Results & Evaluation](https://www.google.com/search?q=%23-results--evaluation)
-9.  [Contributors](https://www.google.com/search?q=%23-contributors)
+1.  [Project Overview]
+2.  [Key Features]
+3.  [Tech Stack]
+4.  [Dataset & Preprocessing]
+5.  [Model Architecture]
+6.  [Installation & Usage]
+7.  [Project Structure]
+8.  [Results & Evaluation]
+9.  [Contributors]
 
 -----
 
