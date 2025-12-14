@@ -8,15 +8,15 @@
 
 ## 📖 Table of Contents
 
-1.  [Project Overview]
-2.  [Key Features]
-3.  [Tech Stack]
-4.  [Dataset & Preprocessing]
-5.  [Model Architecture]
-6.  [Installation & Usage]
-7.  [Project Structure]
-8.  [Results & Evaluation]
-9.  [Contributors]
+1.  Project Overview
+2.  Key Features
+3.  Tech Stack
+4.  Dataset & Preprocessing
+5.  Model Architecture
+6.  Installation & Usage
+7.  Project Structure
+8.  Results & Evaluation
+9.  Contributors
 
 -----
 
