@@ -104,7 +104,7 @@ Standard models predict "Fatal" only if confidence \> 50%. To save lives, we low
 Ensure you have Python installed. Clone this repository and install dependencies:
 
 ```bash
-git clone https://github.com/YourUsername/SafeRoute-Pro.git
+git clone https://github.com/Beliro/SafeRoute-Pro.git
 cd SafeRoute-Pro
 pip install pandas numpy scikit-learn streamlit joblib matplotlib seaborn
 ```
